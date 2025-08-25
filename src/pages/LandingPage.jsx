@@ -1,5 +1,5 @@
 import FamousTrips from "@/components/LandingComponents/FamousTrips";
-import Features from "@/components/LandingComponents/FamousTrips";
+import Features from "@/components/LandingComponents/Features";
 import Hero from "@/components/LandingComponents/Hero";
 import Navbar from "@/components/LandingComponents/Navbar";
 import React from "react";

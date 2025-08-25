@@ -4,26 +4,32 @@ import { Button } from "../ui/Button";
 const Hero = () => {
   return (
     <section className="relative flex items-center justify-center text-white">
-      <div className="absolute top-0 left-0 w-full h-full -z-10">
+      <div className="absolute top-0 left-0 w-full h-full -z-20">
         <img
-          src="https://a.cdn-hotels.com/gdcs/production115/d1326/a5981c45-4f4d-44b8-a581-d9b10985fcb7.jpg"
+          src="https://res.cloudinary.com/ybmedia/image/upload/c_crop,h_1125,w_2000,x_0,y_40/c_fill,f_auto,h_900,q_auto,w_1600/v1/m/6/8/68dbbf89e8e397f36bc350ce3846206b37712d77/20-dream-worthy-vacation-destinations.jpg"
           alt="background"
-          className="w-full h-full opacity-60"
+          className="w-full h-full "
         />
       </div>
+
       <div className="absolute h-full w-full top-0 left-0 bg-black/60 -z-10"></div>
 
-      <div className="flex flex-col items-center justify-center text-center gap-6 min-h-[80vh]  max-w-2/3 px-4">
-        <h1 className="text-4xl md:text-5xl font-bold">
-          Explore the world with WanderWise
+      <div className="flex flex-col items-center justify-center text-center gap-10 min-h-[90vh] max-w-2/3 px-4">
+        <h1 className="text-4xl md:text-6xl font-bold">
+          Explore the world with Wander Wise
         </h1>
-        <p className="text-white">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
-          repellat quo voluptatem corrupti sint aperiam. Enim, ab unde qui,
-          minus natus doloribus fugit sunt quis, dolore a quod. Aliquam,
-          cupiditate?
+        <p className="px-20 text-lg text-white">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit
+          officiis dolorum qui libero recusandae eaque ab eligendi incidunt,
+          error explicabo, nemo tenetur Lorem ipsum, dolor sit amet consectetur
+          adipisicing elit. Maxime, amet!
         </p>
-        <Button className="bg-gray-500">Get Started</Button>
+        <div className="flex items-center gap-4">
+          <Button size={"lg"}>Explore Trips</Button>
+          <Button size="lg" variant={"outline"} className="bg-transparent">
+            Register
+          </Button>
+        </div>
       </div>
     </section>
   );
