@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className="flex items-center gap-8 [&>a]:hover:underline font-medium text-gray-800">
           <a href="#features">Features</a>
           <a href="#trips">Trips</a>
-          <a href="#testimonials">Testimonials</a>
+          <a href="/testimonials">Testimonials</a>
           <a href="#about">About</a>
         </nav>
         <div>
