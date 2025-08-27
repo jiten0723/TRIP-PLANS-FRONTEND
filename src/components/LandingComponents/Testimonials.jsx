@@ -1,11 +1,12 @@
 import React from "react";
 import { StarIcon } from "lucide-react";
-function Testimonials() {
+
+const Testimonials = () => {
   return (
-    <section className="bg-gray-100 py-10">
+    <section className="bg-gray-100 py-10" id="testimonials">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8">
-          What Our Customers Say
+          What Our Travelers Say
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -18,7 +19,7 @@ function Testimonials() {
               ))}
             </div>
 
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-4 font-sans">
               "I recently booked my trip to Pokhara through this website, and it
               was the best decision ever! The platform is easy to use, and I
               could compare different destinations before choosing. The booking
@@ -33,7 +34,7 @@ function Testimonials() {
               />
               <div>
                 <h4 className="font-semibold">Xavier</h4>
-                <p className="text-sm text-gray-500">Software Engineer</p>
+                <p className="text-sm text-gray-500">Tokyo,Japan</p>
               </div>
             </div>
           </div>
@@ -47,7 +48,7 @@ function Testimonials() {
               ))}
             </div>
 
-            <p className="text-gray-600 mb-15">
+            <p className="text-gray-600 mb-9 font-sans">
               "This website really helped me plan my vacation. I loved how I
               could filter destinations based on my budget and interests. The
               suggestions felt personalized, and I discovered hidden gems I
@@ -62,7 +63,7 @@ function Testimonials() {
               />
               <div>
                 <h4 className="font-semibold">Marie Curie</h4>
-                <p className="text-sm text-gray-500">Designer</p>
+                <p className="text-sm text-gray-500">London,UK</p>
               </div>
             </div>
           </div>
@@ -76,7 +77,7 @@ function Testimonials() {
               ))}
             </div>
 
-            <p className="text-gray-600 mb-9">
+            <p className="text-gray-600 mb-8 font-sans">
               "The site is excellent for finding the best destinations at
               affordable prices. The user interface is clean and easy to
               navigate. One small suggestion: it would be even better if you
@@ -91,7 +92,7 @@ function Testimonials() {
               />
               <div>
                 <h4 className="font-semibold">Elon Musk</h4>
-                <p className="text-sm text-gray-500">Entrepreneur</p>
+                <p className="text-sm text-gray-500">Washington-DC,USA</p>
               </div>
             </div>
           </div>
@@ -99,6 +100,6 @@ function Testimonials() {
       </div>
     </section>
   );
-}
+};
 
 export default Testimonials;
