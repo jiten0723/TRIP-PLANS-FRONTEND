@@ -75,65 +75,65 @@ function FormLabel({ className, ...props }) {
   );
 }
 
-// function FormControl({ ...props }) {
-//   const { error, formItemId, formDescriptionId, formMessageId } =
-//     useFormField();
+function FormControl({ ...props }) {
+  const { error, formItemId, formDescriptionId, formMessageId } =
+    useFormField();
 
-//   return (
-//     <Slot
-//       data-slot="form-control"
-//       id={formItemId}
-//       aria-describedby={
-//         !error
-//           ? `${formDescriptionId}`
-//           : `${formDescriptionId} ${formMessageId}`
-//       }
-//       aria-invalid={!!error}
-//       {...props}
-//     />
-//   );
-// }
+  return (
+    <Slot
+      data-slot="form-control"
+      id={formItemId}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
+      aria-invalid={!!error}
+      {...props}
+    />
+  );
+}
 
-// function FormDescription({ className, ...props }) {
-//   const { formDescriptionId } = useFormField();
+function FormDescription({ className, ...props }) {
+  const { formDescriptionId } = useFormField();
 
-//   return (
-//     <p
-//       data-slot="form-description"
-//       id={formDescriptionId}
-//       className={cn("text-muted-foreground text-sm", className)}
-//       {...props}
-//     />
-//   );
-// }
+  return (
+    <p
+      data-slot="form-description"
+      id={formDescriptionId}
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  );
+}
 
-// function FormMessage({ className, ...props }) {
-//   const { error, formMessageId } = useFormField();
-//   const body = error ? String(error?.message ?? "") : props.children;
+function FormMessage({ className, ...props }) {
+  const { error, formMessageId } = useFormField();
+  const body = error ? String(error?.message ?? "") : props.children;
 
-//   if (!body) {
-//     return null;
-//   }
+  if (!body) {
+    return null;
+  }
 
-//   return (
-//     <p
-//       data-slot="form-message"
-//       id={formMessageId}
-//       className={cn("text-destructive text-sm", className)}
-//       {...props}
-//     >
-//       {body}
-//     </p>
-//   );
-// }
+  return (
+    <p
+      data-slot="form-message"
+      id={formMessageId}
+      className={cn("text-destructive text-sm", className)}
+      {...props}
+    >
+      {body}
+    </p>
+  );
+}
 
-// export {
-//   useFormField,
-//   Form,
-//   FormItem,
-//   FormLabel,
-//   FormControl,
-//   FormDescription,
-//   FormMessage,
-//   FormField,
-// };
+export {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+};
