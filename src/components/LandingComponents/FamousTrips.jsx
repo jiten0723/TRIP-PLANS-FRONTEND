@@ -5,8 +5,9 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
+  CardTitle,
 } from "../ui/card";
-import { famousTrips, features } from "@/lib/constants";
+import { famousTrips } from "/src/lib/constants.js";
 import { Button } from "../ui/button";
 
 const FamousTrips = () => {

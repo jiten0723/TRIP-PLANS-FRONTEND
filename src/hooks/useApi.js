@@ -7,7 +7,7 @@ const useApi = (endpoint, options = {}, deps = []) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let mounted = true; //requested aai pugiyo bhaneko
+    let mounted = true; //requested api pugiyo bhaneko
     setLoading(true);
 
     api(endpoint, options)

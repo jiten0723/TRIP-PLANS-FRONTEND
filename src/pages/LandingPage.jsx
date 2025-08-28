@@ -1,5 +1,7 @@
+import CTA from "@/components/LandingComponents/CTA";
 import FamousTrips from "@/components/LandingComponents/FamousTrips";
 import Features from "@/components/LandingComponents/Features";
+import Footer from "@/components/LandingComponents/Footer";
 import Hero from "@/components/LandingComponents/Hero";
 import Navbar from "@/components/LandingComponents/Navbar";
 import Testimonials from "@/components/LandingComponents/Testimonials";
@@ -13,6 +15,8 @@ const LandingPage = () => {
       <Features />
       <FamousTrips />
       <Testimonials />
+      <CTA />
+      <Footer />
     </>
   );
 };

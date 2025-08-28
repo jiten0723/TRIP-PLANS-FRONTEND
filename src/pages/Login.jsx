@@ -1,85 +1,41 @@
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { useForm } from "react-hook-form";
-// import { z } from "zod";
+import { loginUser, registerUser } from "@/api/auth";
+import { Button } from "@/components/ui/button";
+import useAuth from "@/hooks/useAuth";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-// import { Button } from "@/components/ui/button";
-// import {
-//   Form,
-//   FormControl,
-//   FormDescription,
-//   FormField,
-//   FormItem,
-//   FormLabel,
-//   FormMessage,
-// } from "@/components/ui/Form";
-// import { Input } from "@/components/ui/Input";
+const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-// const formSchema = z.object({
-//   username: z.string().min(2, {
-//     message: "Username must be at least 2 characters.",
-//   }),
-//   password: z
-//     .string()
-//     .min(8, { message: "Password must be at least 8 characters." }),
-// });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const form = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      };
+      const response = await registerUser(form);
+      console.log(response);
+      //   login({ email: form.email }, token);
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+      alert("Signup failed");
+    }
+  };
+  return (
+    <div>
+      <form>
+        <input id="name" type="text" placeholder="name" />
+        <input id="email" type="email" placeholder="email" />
+        <input id="password" type="password" placeholder="password" />
 
-// export function Login() {
-//   const form = useForm({
-//     resolver: zodResolver(formSchema),
-//     defaultValues: {
-//       username: "",
-//       password: "",
-//     },
-//   });
+        <Button onClick={handleSubmit}>Signup</Button>
+      </form>
+    </div>
+  );
+};
 
-//   const onSubmit = (data) => {
-//     console.log(data);
-//   };
-
-//   return (
-//     <Form {...form}>
-//       <div className=" ml-153 mx-150 mt-20">
-//         <h1 className="  text-4xl  font-extrabold ">YOUR DATA</h1>
-//       </div>
-
-//       <form
-//         onSubmit={form.handleSubmit(onSubmit)}
-//         className="justify-center space-y-8 border-1 rounded-lg ml-120 mt-14 p-8  m-140  "
-//       >
-//         <FormField
-//           control={form.control}
-//           name="username"
-//           render={({ field }) => (
-//             <FormItem>
-//               <FormLabel>Username</FormLabel>
-//               <FormControl>
-//                 <Input placeholder="shadcn" {...field} />
-//               </FormControl>
-//               <FormDescription>
-//                 This is your public display name.
-//               </FormDescription>
-//               <FormMessage />
-//             </FormItem>
-//           )}
-//         />
-//         <FormField
-//           control={form.control}
-//           name="password"
-//           render={({ field }) => (
-//             <FormItem>
-//               <FormLabel>Password</FormLabel>
-//               <FormControl>
-//                 <Input placeholder="********" {...field} />
-//               </FormControl>
-//               <FormDescription>Must be at least 8 letters.</FormDescription>
-//               <FormMessage />
-//             </FormItem>
-//           )}
-//         />
-//         <Button type="submit">Submit</Button>
-//       </form>
-//     </Form>
-//   );
-// }
-
-// export default Login;
+export default Login;
