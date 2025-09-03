@@ -1,13 +1,26 @@
-import CTA from "@/components/LandingComponents/CTA";
-import FamousTrips from "@/components/LandingComponents/FamousTrips";
-import Features from "@/components/LandingComponents/Features";
-import Footer from "@/components/LandingComponents/Footer";
-import Hero from "@/components/LandingComponents/Hero";
-import Navbar from "@/components/LandingComponents/Navbar";
-import Testimonials from "@/components/LandingComponents/Testimonials";
-import React from "react";
+import CTA from "@/components/landingComponents/CTA";
+import FamousTrips from "@/components/landingComponents/FamousTrips";
+import Features from "@/components/landingComponents/Features";
+import Footer from "@/components/landingComponents/Footer";
+import Hero from "@/components/landingComponents/Hero";
+import Navbar from "@/components/landingComponents/Navbar";
+import Testimonials from "@/components/landingComponents/Testimonials";
+import useAuth from "@/hooks/useAuth";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  // if (token) {
+  //   navigate("/dashboard");
+  // }
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, []);
   return (
     <>
       <Navbar />

@@ -1,11 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import useAuth from "./hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
-import { Navigate } from "react-router-dom";
+import AppLayout from "./components/layout/AppLayout";
+import Trips from "./pages/Trips";
+import AddTrip from "./pages/AddTrip";
 
 function App() {
   const { token, logout } = useAuth();
@@ -45,6 +47,8 @@ function App() {
 
         <Route element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/trips" element={<Trips />} />
+          <Route path="/trips/add" element={<AddTrip />} />
         </Route>
       </Routes>
     </BrowserRouter>

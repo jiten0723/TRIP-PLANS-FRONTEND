@@ -49,6 +49,11 @@ export default function Signup() {
       confirmPassword: "",
     },
   });
+  const { token } = useAuth();
+
+  if (token) {
+    navigate("/dashboard");
+  }
 
   async function onSubmit(data) {
     const { name, email, password } = data;
