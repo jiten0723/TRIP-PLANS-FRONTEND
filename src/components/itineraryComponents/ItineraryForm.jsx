@@ -29,9 +29,7 @@ const itinerarySchema = z.object({
 
 
 export function ItineraryForm({
-  isLoading,
   initialData,
-  mode
 }) {
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -177,14 +175,8 @@ export function ItineraryForm({
 
           {/* Submit Button */}
           <div className="flex justify-end">
-            <Button type="submit" disabled={isLoading} size="lg">
-              {isLoading
-                ? mode === "edit"
-                  ? "Updating..."
-                  : "Creating..."
-                : mode === "edit"
-                  ? "Update Itinerary"
-                  : "Create Itinerary"}
+            <Button type="submit" size="lg">
+              Submit
             </Button>
           </div>
         </form>

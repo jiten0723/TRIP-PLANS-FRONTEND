@@ -66,8 +66,8 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
                 </CardDescription>
               </CardHeader>
             </Card>
-            <div className='mb-6 flex justify-end'>
 
+            <div className='mb-6 flex justify-end'>
               <a href={`/itineraries/add?tripId=${selectedTripId}`}>
                 <Button>
                   <Plus className="mr-2 h-4 w-4" />
@@ -129,9 +129,13 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
                                   <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm font-medium text-gray-900">{item?.time}</span>
                                     <div className="flex items-center space-x-2">
+
+                                      <a href={`/itineraries/edit/${dayItinerary._id}?tripId=${selectedTripId}`}>
                                       <Button variant="outline" size="icon">
                                         <Edit className="h-4 w-4" />
                                       </Button>
+                                      </a>
+
                                       <Button
                                         variant="outline"
                                         size="icon"
@@ -142,7 +146,7 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
                                     </div>
                                   </div>
                                   <h4 className="text-lg font-semibold text-gray-900 mb-1">{item?.name}</h4>
-                                  <ul className='space-y-2 list-disc pl-4'>
+                                  <ul className='space-y-1 list-disc pl-4 mt-2'>
                                     {item?.notes.map((note, index) => {
                                       return (
                                         <li className='text-sm text-gray-600' key={index}>

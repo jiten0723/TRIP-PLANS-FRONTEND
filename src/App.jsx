@@ -13,6 +13,7 @@ import EditTrip from "./pages/EditTrip"
 import PackingPage from "./pages/Packing"
 import ItineraryPage from "./pages/Itinerary"
 import AddItinerary from "./pages/AddItinerary"
+import EditItinerary from "./pages/EditItinerary"
 
 function App() {
 
@@ -55,13 +56,17 @@ function App() {
       <Route element={<ProtectedRoutes />}>
 
         <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="/trips" element={<Trips />} />
         <Route path="/trips/add" element={<AddTrip />} />
         <Route path="/trips/edit/:id" element={<EditTrip />} />
         <Route path="/trips/:id" element={<TripInfo />} />
+
         <Route path="/packing" element={<PackingPage />} />
+        
         <Route path="/itineraries" element={<ItineraryPage />} />
         <Route path="/itineraries/add" element={<AddItinerary />} />
+        <Route path="/itineraries/edit/:id" element={<EditItinerary />} />
       </Route>
    </Routes>
    </BrowserRouter>
