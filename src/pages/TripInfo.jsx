@@ -21,6 +21,7 @@ import {
     Clock,
     Target,
 } from "lucide-react"
+import AddExpense from '@/components/trips/AddExpense';
 
 
 const TripInfo = () => {
@@ -308,6 +309,8 @@ const TripInfo = () => {
                             </CardContent>
                         </Card>
 
+                        {/* add expense  */}
+                        <AddExpense tripId={id} />
                     </div>
                 </div>
             </div>

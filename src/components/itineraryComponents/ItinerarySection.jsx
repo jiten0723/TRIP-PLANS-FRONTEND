@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Badge } from "@/components/ui/badge"
 
 const ItinerarySection = ({ selectedTripId, trips }) => {
-  const { data: itineraries, loading, error } = useApi(`/itineraries/${selectedTripId}`);
+  const { data: itineraries, loading, error } = useApi(`/itineraries/${selectedTripId}`, {}, [selectedTripId]);
 
   const selectedTrip = trips.find((item) => item._id = selectedTripId);
 
@@ -51,7 +51,7 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
-                  <div className='flex gap-1 items-center'>
+                  <div className='flex gap-1 items-center text-2xl'>
                     <MapIcon className="mr-2 h-5 w-5" />
                     {selectedTrip?.title}
                   </div>
@@ -90,6 +90,19 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
                           {dayItinerary?.title}
                         </h3>
                         <div className='flex items-center'>
+
+                    {
+                      dayItems?.length !== 0 
+                      &&
+                       <a href={`/itineraries/edit/${dayItinerary?._id}?tripId=${selectedTripId}`} className='mr-6'>
+                            <Button variant="outline">
+                              <Edit className="h-4 w-4" />
+                              Manage
+                            </Button>
+                          </a>
+                    }
+                         
+
                           <Calendar className="mr-2 h-5 w-5" />
                           {new Date(day).toLocaleDateString("en-US", {
                             weekday: "long",
@@ -101,6 +114,7 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
+
                       {dayItems.length === 0 ? (
                         <div className="text-center py-8 text-gray-500">
                           <Calendar className="h-12 w-12 mx-auto mb-4 text-gray-300" />
@@ -128,22 +142,7 @@ const ItinerarySection = ({ selectedTripId, trips }) => {
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm font-medium text-gray-900">{item?.time}</span>
-                                    <div className="flex items-center space-x-2">
 
-                                      <a href={`/itineraries/edit/${dayItinerary._id}?tripId=${selectedTripId}`}>
-                                      <Button variant="outline" size="icon">
-                                        <Edit className="h-4 w-4" />
-                                      </Button>
-                                      </a>
-
-                                      <Button
-                                        variant="outline"
-                                        size="icon"
-                                        onClick={() => deleteItineraryItem(day, item.id)}
-                                      >
-                                        <Trash2 className="h-4 w-4 text-red-600" />
-                                      </Button>
-                                    </div>
                                   </div>
                                   <h4 className="text-lg font-semibold text-gray-900 mb-1">{item?.name}</h4>
                                   <ul className='space-y-1 list-disc pl-4 mt-2'>
