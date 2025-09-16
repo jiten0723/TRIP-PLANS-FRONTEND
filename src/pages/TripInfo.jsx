@@ -22,6 +22,7 @@ import {
     Target,
 } from "lucide-react"
 import AddExpense from '@/components/trips/AddExpense';
+import InviteCollaborator from '@/components/trips/InviteCollaborator';
 
 
 const TripInfo = () => {
@@ -225,11 +226,11 @@ const TripInfo = () => {
                                     <div>
                                         <h4 className="font-semibold mb-3">Recent Expenses</h4>
                                         <div className="space-y-2">
-                                            {trip.budget.expenses.slice(0, 3).map((expense, index) => (
+                                            {trip.budget.expenses.map((expense, index) => (
                                                 <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                                                     <div>
                                                         <p className="font-medium">{expense.name}</p>
-                                                        <p className="text-sm text-gray-600">{new Date(expense.date).toLocaleDateString()}</p>
+                                                        <p className="text-sm text-gray-600">{new Date(expense.date).toLocaleString()}</p>
                                                     </div>
                                                     <p className="font-semibold">${expense.amount}</p>
                                                 </div>
@@ -311,6 +312,9 @@ const TripInfo = () => {
 
                         {/* add expense  */}
                         <AddExpense tripId={id} />
+
+                        {/* invite collaborator  */}
+                        <InviteCollaborator tripId={id} />
                     </div>
                 </div>
             </div>
