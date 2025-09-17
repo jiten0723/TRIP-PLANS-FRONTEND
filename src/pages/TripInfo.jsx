@@ -34,7 +34,6 @@ const TripInfo = () => {
     const { data: trip, error, loading } = useApi(`/trips/${id}`, {}, [dependancy]);
 
     if (loading) return <Loading text='Loading trip details...' />
-    console.log(trip);
 
     const deleteTrip = async () => {
         try {
@@ -116,7 +115,7 @@ const TripInfo = () => {
                                                 Edit Trip
                                             </Button>
                                         </a>
-                                        <Button variant="outline" size="sm" onClick={deleteTrip}>
+                                        <Button variant="outline" size="sm" onClick={deleteTrip} className={"text-red-600 hover:text-red-600 hover:bg-red-50"}>
                                             <Trash2 className="mr-2 h-4 w-4" />
                                             Delete
                                         </Button>

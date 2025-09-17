@@ -1,5 +1,5 @@
 import React from 'react'
-import { DollarSign, Plus } from 'lucide-react'
+import { BanknoteArrowDown, DollarSign, Plus } from 'lucide-react'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -83,7 +83,7 @@ const AddExpense = ({ tripId, dependancy, setDependancy }) => {
                         />
 
                         <Button type="submit" className="w-full">
-                            <Plus className="mr-2 h-4 w-4" />
+                            <BanknoteArrowDown className="mr-2 h-5 w-5" />
                             Add New Expense
                         </Button>
                     </CardContent>
