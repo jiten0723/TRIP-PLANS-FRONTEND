@@ -14,6 +14,7 @@ import PackingPage from "./pages/Packing"
 import ItineraryPage from "./pages/Itinerary"
 import AddItinerary from "./pages/AddItinerary"
 import EditItinerary from "./pages/EditItinerary"
+import AcceptInvitation from "./pages/AcceptInvitation"
 
 function App() {
 
@@ -60,7 +61,9 @@ function App() {
         <Route path="/trips" element={<Trips />} />
         <Route path="/trips/add" element={<AddTrip />} />
         <Route path="/trips/edit/:id" element={<EditTrip />} />
+        <Route path="/trips/:id/invite/accept" element={<AcceptInvitation />} />
         <Route path="/trips/:id" element={<TripInfo />} />
+
 
         <Route path="/packing" element={<PackingPage />} />
         

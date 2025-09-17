@@ -32,6 +32,7 @@ const InviteCollaborator = ({ tripId }) => {
             }
             const response = await api.post(`/trips/${tripId}/invite`, newData);
            toast.info("Invitation link sent");
+           form.reset();
         } catch (error) {
             console.error('Error adding expense:', error);
             toast.error("An error occurred while adding expense");

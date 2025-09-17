@@ -17,7 +17,7 @@ const expenseSchema = z.object({
 })
 
 
-const AddExpense = ({ tripId }) => {
+const AddExpense = ({ tripId, dependancy, setDependancy }) => {
 
     const form = useForm({
         resolver: zodResolver(expenseSchema),
@@ -33,6 +33,7 @@ const AddExpense = ({ tripId }) => {
             console.log(response)
             if (response.data._id) {
                 toast.success("Expense added successfully!");
+                setDependancy(dependancy+1);
             } else {
                 toast.error("Failed to add expense");
             }

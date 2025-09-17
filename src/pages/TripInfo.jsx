@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import api from '@/api/axios';
 import Loading from '@/components/shared/Loading';
 import { Button } from '@/components/ui/button'
@@ -29,7 +29,9 @@ const TripInfo = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { data: trip, error, loading } = useApi(`/trips/${id}`);
+    const [dependancy, setDependancy] = useState(0);
+
+    const { data: trip, error, loading } = useApi(`/trips/${id}`, {}, [dependancy]);
 
     if (loading) return <Loading text='Loading trip details...' />
     console.log(trip);
@@ -73,7 +75,6 @@ const TripInfo = () => {
         if (!trip) return 0
         return trip.budget.total - trip.budget.spent
     }
-
 
     if (error || !trip) {
         return (
@@ -247,13 +248,13 @@ const TripInfo = () => {
                                             <h3 className="text-lg font-semibold">Collaborators</h3>
                                         </div>
                                         <div className="flex flex-wrap gap-3">
-                                            {trip.collaborators.map((email, index) => (
+                                            {trip.collaborators.map((id, index) => (
                                                 <div key={index} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
                                                     <Avatar className="h-8 w-8">
-                                                        <AvatarImage src={`https://api.dicebear.com/7.x/initials/svg?seed=${email}`} />
-                                                        <AvatarFallback>{email.charAt(0).toUpperCase()}</AvatarFallback>
+                                                        <AvatarImage src={`https://api.dicebear.com/7.x/initials/svg?seed=${id}`} />
+                                                        <AvatarFallback>{id.charAt(0).toUpperCase()}</AvatarFallback>
                                                     </Avatar>
-                                                    <span className="text-sm">{email}</span>
+                                                    <span className="text-sm">{id}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -311,7 +312,7 @@ const TripInfo = () => {
                         </Card>
 
                         {/* add expense  */}
-                        <AddExpense tripId={id} />
+                        <AddExpense tripId={id} dependancy={dependancy} setDependancy={setDependancy} />
 
                         {/* invite collaborator  */}
                         <InviteCollaborator tripId={id} />
