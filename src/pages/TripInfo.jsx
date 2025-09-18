@@ -23,6 +23,7 @@ import {
 } from "lucide-react"
 import AddExpense from '@/components/trips/AddExpense';
 import InviteCollaborator from '@/components/trips/InviteCollaborator';
+import AddFile from '@/components/trips/AddFile';
 
 
 const TripInfo = () => {
@@ -315,6 +316,8 @@ const TripInfo = () => {
 
                         {/* invite collaborator  */}
                         <InviteCollaborator tripId={id} />
+
+                        <AddFile tripId={id} dependancy={dependancy} setDependancy={setDependancy} />
                     </div>
                 </div>
             </div>
