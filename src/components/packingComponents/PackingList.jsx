@@ -1,10 +1,16 @@
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Badge } from "@/components/ui/badge"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -12,18 +18,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { MapPin, CheckSquare, Plus, Trash2, Package, Edit } from "lucide-react"
-import api from "@/api/axios"
-import useApi from "@/hooks/useApi"
-import Loading from "../shared/Loading"
-import { toast } from "sonner"
+} from "@/components/ui/dialog";
+import { MapPin, CheckSquare, Plus, Trash2, Package, Edit } from "lucide-react";
+import api from "@/api/axios";
+import useApi from "@/hooks/useApi";
+import Loading from "../shared/Loading";
+import { toast } from "sonner";
 
 const PackingList = ({ selectedTripId }) => {
-
   const [dependancy, setDependancy] = useState(0);
 
-  const { loading, error, data: packingItems } = useApi(`/package-lists/${selectedTripId}`, {}, [dependancy] );
+  const {
+    loading,
+    error,
+    data: packingItems,
+  } = useApi(`/package-lists/${selectedTripId}`, {}, [dependancy]);
 
   // dialog box close or open
   const [isAddingItem, setIsAddingItem] = useState(false);
@@ -34,96 +43,98 @@ const PackingList = ({ selectedTripId }) => {
   // store item info, if selected for editing
   const [selectedItem, setSelectedItem] = useState(null);
 
-// input field inside dialog form
+  // input field inside dialog form
   const [newItemName, setNewItemName] = useState("");
-
 
   const addPackingItem = async () => {
     try {
-      const response = await api.post(`/package-lists/${selectedTripId}`, { name: newItemName });
+      const response = await api.post(`/package-lists/${selectedTripId}`, {
+        name: newItemName,
+      });
 
       if (response.data?._id) {
         toast.success("Packing Item added!");
-        setDependancy(dependancy+1);
+        setDependancy(dependancy + 1);
+      } else {
+        toast.error("Failed to add item");
       }
-      else{
-         toast.error("Failed to add item");
-      }
-
     } catch (error) {
       console.log("Some error occured");
-      toast.error("Some error occured! Try again later.")
+      toast.error("Some error occured! Try again later.");
     }
     setIsAddingItem(false);
     setNewItemName("");
-  }
+  };
 
-  const deleteItem = async (id) =>{
+  const deleteItem = async (id) => {
     try {
-      const response = await api.delete(`/package-lists/${selectedTripId}/${id}`);
-      if(response.data.message){
+      const response = await api.delete(
+        `/package-lists/${selectedTripId}/${id}`
+      );
+      if (response.data.message) {
         toast.success("Item deleted successfully");
-        setDependancy(dependancy+1);
+        setDependancy(dependancy + 1);
       }
     } catch (error) {
-      console.log("Some error occured", error)
-       toast.error("Some error occured");
+      console.log("Some error occured", error);
+      toast.error("Some error occured");
     }
-  }
+  };
 
-const editPackingItem = async () => {
+  const editPackingItem = async () => {
     try {
-      const response = await api.patch(`/package-lists/${selectedTripId}/${selectedItem._id}`, { name: newItemName });
+      const response = await api.patch(
+        `/package-lists/${selectedTripId}/${selectedItem._id}`,
+        { name: newItemName }
+      );
 
       if (response.data?._id) {
         toast.success("Packing Item edited!");
-        setDependancy(dependancy+1);
+        setDependancy(dependancy + 1);
+      } else {
+        toast.error("Failed to edit item");
       }
-      else{
-         toast.error("Failed to edit item");
-      }
-
     } catch (error) {
       console.log("Some error occured", error);
-      toast.error("Some error occured! Try again later.")
+      toast.error("Some error occured! Try again later.");
     }
     setIsAddingItem(false);
     setNewItemName("");
-  }
+  };
 
   const toggleCompleted = async (id, completedValue) => {
     try {
-      const response = await api.patch(`/package-lists/${selectedTripId}/${id}`, { completed: completedValue });
+      const response = await api.patch(
+        `/package-lists/${selectedTripId}/${id}`,
+        { completed: completedValue }
+      );
 
       if (response.data?._id) {
         toast.success("Item Packed!");
-        setDependancy(dependancy+1);
+        setDependancy(dependancy + 1);
+      } else {
+        toast.error("Failed to update status");
       }
-      else{
-         toast.error("Failed to update status");
-      }
-
     } catch (error) {
       console.log("Some error occured", error);
-      toast.error("Some error occured! Try again later.")
+      toast.error("Some error occured! Try again later.");
     }
-  }
+  };
 
   const getDateDisplay = (dateString) => {
-    if (!dateString) return "No date"
+    if (!dateString) return "No date";
     try {
-      return new Date(dateString).toLocaleDateString()
+      return new Date(dateString).toLocaleDateString();
     } catch {
-      return "Invalid date"
+      return "Invalid date";
     }
-  }
+  };
 
-  if (loading) return <Loading />
+  if (loading) return <Loading />;
 
   return (
     <div className="space-y-6">
       {/* Trip Info & Progress */}
-
 
       {/* Packing item dialog */}
       <div className="flex justify-between items-center">
@@ -137,8 +148,14 @@ const editPackingItem = async () => {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle> {isEditing? "Edit": "Add"} Packing Item</DialogTitle>
-              <DialogDescription> {isEditing? "Edit": "Add"} a new item to your packing list</DialogDescription>
+              <DialogTitle>
+                {" "}
+                {isEditing ? "Edit" : "Add"} Packing Item
+              </DialogTitle>
+              <DialogDescription>
+                {" "}
+                {isEditing ? "Edit" : "Add"} a new item to your packing list
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4">
               <div className="space-y-2">
@@ -155,14 +172,14 @@ const editPackingItem = async () => {
                 <Button
                   variant="outline"
                   onClick={() => {
-                    setIsAddingItem(false)
-                    setNewItemName("")
+                    setIsAddingItem(false);
+                    setNewItemName("");
                   }}
                 >
                   Cancel
                 </Button>
-                <Button onClick={isEditing? editPackingItem : addPackingItem}>
-                   {isEditing? "Edit": "Add"}  Item
+                <Button onClick={isEditing ? editPackingItem : addPackingItem}>
+                  {isEditing ? "Edit" : "Add"} Item
                 </Button>
               </div>
             </div>
@@ -176,8 +193,12 @@ const editPackingItem = async () => {
           <Card>
             <CardContent className="text-center py-12">
               <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No items found</h3>
-              <p className="text-gray-600 mb-4">Start adding items to your packing list</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No items found
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Start adding items to your packing list
+              </p>
               <Button onClick={() => setIsAddingItem(true)}>
                 <Plus className="mr-2 h-4 w-4" />
                 Add First Item
@@ -189,44 +210,57 @@ const editPackingItem = async () => {
             {packingItems.map((item) => (
               <Card
                 key={item._id}
-                className={`transition-all px-6  ${item.completed ? "bg-green-50 border-green-200" : ""}`}
+                className={`transition-all px-6  ${
+                  item.completed ? "bg-green-50 border-green-200" : ""
+                }`}
               >
                 <div className="flex items-center justify-between">
+                  {/* left  */}
+                  <div className="flex items-center gap-4">
+                    <Checkbox
+                      className="h-6 w-6 shadow-md"
+                      checked={item.completed}
+                      onClick={() => {
+                        toggleCompleted(item._id, !item.completed);
+                      }}
+                    />
 
-                {/* left  */}
-                <div className="flex items-center gap-4">
-                  <Checkbox className="h-6 w-6 shadow-md" checked={item.completed} onClick={()=>{toggleCompleted(item._id, !item.completed)}} />
-                    
-                  <p className="text-lg font-semibold">{item.name}</p>
+                    <p className="text-lg font-semibold">{item.name}</p>
+                  </div>
+
+                  {/* right */}
+                  <div className="flex items-center gap-4">
+                    <Button
+                      onClick={() => {
+                        setIsAddingItem(true);
+                        setNewItemName(item.name);
+                        setIsEditing(true);
+                        setSelectedItem(item);
+                      }}
+                      variant="outline"
+                      size="icon"
+                    >
+                      <Edit />
+                    </Button>
+
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        deleteItem(item._id);
+                      }}
+                    >
+                      <Trash2 className="text-red-500" />
+                    </Button>
+                  </div>
                 </div>
-
-                {/* right */}
-                <div className="flex items-center gap-4">
-                  <Button onClick={()=>{
-                    setIsAddingItem(true)
-                    setNewItemName(item.name)
-                    setIsEditing(true);
-                    setSelectedItem(item);
-                  }}  variant="outline" size="icon">
-                    <Edit />
-                  </Button>
-
-                  <Button variant="outline" size="icon" onClick={ ()=>{deleteItem(item._id)} }>
-                    <Trash2 className="text-red-500" />
-                  </Button>
-
-                </div>
-                  
-                </div>
-
               </Card>
             ))}
           </div>
         )}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default PackingList
+export default PackingList;
